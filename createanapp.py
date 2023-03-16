@@ -116,11 +116,11 @@ with modelTraining:
             'ocean_proximity' : [ocean_proximity]
             })
         if model == 'Linear Regression':
-            result = predict(data, 'lin_regression.sav')
+            result = predict(data, 'l_regression.sav')
         elif model == 'Decision Tree':
-            result = predict(data, 'tree_regression.sav')
-        elif model == 'Random Forest':
-            result = predict(data, 'forest_regression.sav')
+            result = predict(data, 'dTree_regression.sav')
+        #elif model == 'Random Forest':
+          #  result = predict(data, 'ramf_regression.sav')
     
         st.text(f'El precio de la casa es de: ${result[0]}')
   
