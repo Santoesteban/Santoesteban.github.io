@@ -20,16 +20,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
-
-
-# In[83]:
-
-
-def predict(data, model_name):
-    model = joblib.load(f'{model_name}')
-    pipeline= joblib.load('pipeline.sav')
-    transformed_data = pipeline.transform(data)
-    return model.predict(transformed_data)
+from prediction import predict
 
 
 # In[84]:
