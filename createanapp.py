@@ -11,7 +11,6 @@ import pandas as pd
 import os
 import tarfile
 import urllib.request
-import joblib
 import pandas as pd
 import numpy as np
 from sklearn.impute import SimpleImputer
@@ -119,8 +118,8 @@ with modelTraining:
             result = predict(data, 'l_regression.sav')
         elif model == 'Decision Tree':
             result = predict(data, 'dTree_regression.sav')
-        #elif model == 'Random Forest':
-          #  result = predict(data, 'ramf_regression.sav')
+        elif model == 'Random Forest':
+            result = predict(data, 'ramf_regression.sav')
     
         st.text(f'El precio de la casa es de: ${result[0]}')
   
