@@ -22,10 +22,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
 from prediction import predict
 
-
-# In[84]:
-
-
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml2/master/"
 HOUSING_PATH = os.path.join("datasets", "housing")
 HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
@@ -44,30 +40,15 @@ def load_housing_data(housing_path=HOUSING_PATH):
     return pd.read_csv(csv_path)
 
 
-# In[92]:
-
-
 housing = load_housing_data()
-
-
-# In[100]:
-
 
 imputer = SimpleImputer(strategy="median")
 housing_num = housing.drop("ocean_proximity", axis=1)
 imputer.fit(housing_num)
 
-
-# In[102]:
-
-
 X = imputer.transform(housing_num)
 housing_tr = pd.DataFrame(X, columns=housing_num.columns,
                           index=housing.index)
-
-
-# In[101]:
-
 
 rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6
 
@@ -90,9 +71,6 @@ attr_adder = CombinedAttributesAdder(add_bedrooms_per_room=False)
 housing_extra_attribs = attr_adder.transform(housing.values)
 
 
-# In[94]:
-
-
 num_pipeline = Pipeline([
         ('imputer', SimpleImputer(strategy="median")),
         ('attribs_adder', CombinedAttributesAdder()),
@@ -102,35 +80,21 @@ num_pipeline = Pipeline([
 housing_num_tr = num_pipeline.fit_transform(housing_num)
 
 
-# In[95]:
-
-
 header = st.container()
 dataset = st.container()
 inputs = st.container()
 modelTraining = st.container()
 
 
-# In[96]:
-
-
 with header:
     st.title('Housing Project Prediction')
-
-
-# In[97]:
-
-
+    
 with dataset:
     st.header('Housing Dataset')
     st.text('Se muestran la información que existe en nuestra base de datos')
     housing = load_housing_data()
     st.write(housing.head())
-
-
-# In[98]:
-
-
+    
 with inputs:
     st.header('Inputs del modelo')
     st.text('Selecciona los inputs para poder predecir el precio de la casa de tus sueños')
@@ -148,10 +112,6 @@ with inputs:
     model = sel_col2.selectbox('¿Qué tipo de modelo de Machine Learning quieeras usar para tu predicción?', ['Linear Regression','Decision Tree', 'Random Forest'], index = 0)
     
     
-
-
-# In[99]:
-
 
 with modelTraining:
     st.header('Resultados del Modelo de ML')
