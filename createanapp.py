@@ -3,6 +3,9 @@
 Created on Tue Mar  7 08:12:38 2023
 
 @author: Hugo
+
+
+https://santoesteban-santoesteban-github-io-createanapp-zfvopk.streamlit.app/
 """
 
 
@@ -68,23 +71,17 @@ housing_num_tr = num_pipeline.fit_transform(housing_num)
 
 
 header = st.container()
-dataset = st.container()
 inputs = st.container()
 modelTraining = st.container()
 
 
 with header:
-    st.title('Housing Project Prediction')
+    st.title('Precios de casas')
     
-with dataset:
-    st.header('Housing Dataset')
-    st.text('Se muestran la información que existe en nuestra base de datos')
-    housing = load_housing_data()
-    st.write(housing.head())
     
 with inputs:
-    st.header('Inputs del modelo')
-    st.text('Selecciona los inputs para poder predecir el precio de la casa de tus sueños')
+    st.header('Carácteristicas de la casa de la cual deseas conocer el posible precio')
+    
     
     sel_col1, sel_col2= st.columns(2)
     longitude = sel_col1.number_input('Latitud del lugar', value=-124.35)
@@ -96,12 +93,12 @@ with inputs:
     households = sel_col2.slider('Tamaño de personas viviendo en la casa', min_value=1, max_value= 6082, value= 1, step=1)
     median_income = sel_col2.number_input('Ingreso medios', value=0.4999)
     ocean_proximity = sel_col2.selectbox('¿En qué zona te gustaría?', ['ISLAND','NEAR BAY', 'NEAR OCEAN', 'INLAND', '<1H OCEAN'], index = 0)
-    model = sel_col2.selectbox('¿Qué tipo de modelo de Machine Learning quieeras usar para tu predicción?', ['Linear Regression','Decision Tree', 'Random Forest'], index = 0)
+    model = st.selectbox('¿Qué tipo de modelo de Machine Learning quieeras usar para tu predicción?', ['Linear Regression','Decision Tree', 'Random Forest'], index = 0)
     
     
 
 with modelTraining:
-    st.header('Resultados del Modelo de ML')
+    st.header('Resultados')
     if st.button ('Toca para predecir el precio de la casa'):
         data = pd.DataFrame({
             'longitude' : [longitude],
