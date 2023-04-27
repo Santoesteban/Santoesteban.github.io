@@ -50,7 +50,7 @@ def home_page() -> None:
                              'Sepal width': [sepal_width],                        
                              })
     with col2:
-        model = st.radio("Model", ["Logistic Regression", "Support Vector Machine", "Decision tree", "Voting classifier"])
+        model = st.radio("Model", ["Logistic Regression", "Support Vector Machine", "Decision tree", "Voting classifier", "perceptron"])
         
     if st.button ('Toca para predecir la flor'):
         
@@ -62,6 +62,8 @@ def home_page() -> None:
             result = predict(data, 'tree.sav')
         elif model == 'Voting classifier':
             result = predict(data, 'voting.sav')
+        elif model == 'perceptron':
+            result = predict(data, 'perceptron.sav')
             
         if result == 0:
             result = "Setosa"
